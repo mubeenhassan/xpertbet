@@ -4,7 +4,13 @@
   padding: 0px;
   font-family: "Barlow", sans-serif;
 }
+.MyCustomButton:hover {
+  background-color: blue;
+}
 
+.tableCel {
+  padding: 20px 4px !important;
+}
 @media only screen and (max-width: 650px) {
   .mobile-slider {
     width: "100%"
