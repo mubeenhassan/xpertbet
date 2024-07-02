@@ -10,6 +10,9 @@ import { useEffect, useState } from 'react'
 import { Fixtures } from 'sections/fixtures'
 import leaguesService from 'services/league-service'
 import matchesService from 'services/match-service'
+import Skeleton from '@mui/material/Skeleton';
+import Hero from 'sections/hero'
+
 
 export const Match = () => {
 	const [matches, setMatches] = useState(null)
@@ -63,14 +66,16 @@ export const Match = () => {
 	// }
 
 	return (
-		<Stack direction="column" gap={1}>
-			<SectionHeading title="STATISTICI" size={20} />
-			<Stack direction="row" justifyContent="end" alignItems="center" width="100%">
+		<Stack direction="column">
+			{/* <SectionHeading title="STATISTICI" size={20} /> */}
+			<Hero />
+			<Stack direction="row" justifyContent="center" marginTop={2} alignItems="center" width="100%">
 				<Stack mt={[1.5, 0]} direction="row" alignItems="center">
 					<Tooltip title="Previous Day">
 						<IconButton
 							onClick={() => setSelectedDate(prev => prev.minus({ days: 1 }))}
-							edge="start">
+							edge="start"
+							className={"MyCustomButton"}>
 							<ArrowBackIosNewIcon />
 						</IconButton>
 					</Tooltip>
@@ -124,8 +129,16 @@ export const Match = () => {
 				/> */}
 			</Stack>
 			{loadingMatches || loadingLeagues ? (
-				<Stack sx={{ height: '50vh', justifyContent: 'center', alignItems: 'center' }}>
-					<CircularProgress />
+				<Stack padding={3} sx={{ height: '50vh', justifyContent: 'centet', marginTop: '90px', alignItems: 'left' }}>
+					<Skeleton variant="rectangular" width="50%" height={20} />
+					<br />
+					<Skeleton variant="rectangular" width="100%" height={70} />
+					<br />
+					<br />
+					<Skeleton variant="rectangular" width="50%" height={20} />
+					<br />
+					<Skeleton variant="rectangular" width="100%" height={70} />
+
 				</Stack>
 			) : (
 				<Fixtures matches={matches} leagues={leagues} />

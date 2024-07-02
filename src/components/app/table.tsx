@@ -674,7 +674,7 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 							style={{ width: '45px', height: '45px' }}
 						/>
 					)}
-					<Typography fontSize="14px" color={theme.text} variant="body2">
+					<Typography fontSize="28px" color={theme.text} variant="body2">
 						{leagueName}
 					</Typography>
 				</Stack>
@@ -687,9 +687,9 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 								<StyledTableHead
 									align="center"
 									sx={{
-										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										padding: '20px 2px',
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Stack direction="column" alignItems="center">
 										<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
@@ -701,8 +701,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Stack direction="column" alignItems="center">
 										<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
@@ -714,8 +714,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Stack direction="column" alignItems="center">
 										<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
@@ -727,8 +727,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Stack direction="column" alignItems="center">
 										<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
@@ -740,8 +740,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Stack direction="column" alignItems="center">
 										<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
@@ -753,8 +753,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
 										GG
@@ -764,8 +764,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
 										Medie Cornere
@@ -775,8 +775,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
 										+8.5 Cornere
@@ -786,8 +786,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
 										+9.5 Cornere
@@ -797,8 +797,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									align="center"
 									sx={{
 										padding: '2px',
-										backgroundColor: '#E8E8E8',
-										borderRight: '1px solid white'
+										backgroundColor: '#cee2ff',
+										border: '0'
 									}}>
 									<Typography fontSize="12px" fontWeight="bold" color={theme.text}>
 										Medie Cartonașe
@@ -812,13 +812,15 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 									<TableRow
 										key={index}
 										onClick={() => handleRowClick(match.id)}
+										className='tableRow'
 										sx={{
+
 											cursor: 'pointer',
 											'&:hover': {
-												backgroundColor: theme.palette.action.hover
+												background: 'linear-gradient(98.5deg, #05f0ff -46.16%, #7367ff 42.64%, #963cff 70.3%)',
 											}
 										}}>
-										<StyledTableCell align="center">
+										<StyledTableCell className={'tableCel'} align="center">
 											{formatTimeToLocal(match.date_unix)}
 										</StyledTableCell>
 										<StyledTableCell align="left">
@@ -903,6 +905,7 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 													textAlign="center"
 													display={['none', 'block']}
 													py={0.25}
+													borderRadius='4px'
 													bgcolor={theme.gray}
 													whiteSpace="nowrap"
 													color="black"
