@@ -1,8 +1,12 @@
+html,
+body {
+	scroll-behavior: smooth;
+}
 * {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  font-family: "Barlow", sans-serif;
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Barlow', sans-serif;
 }
 .tableRow td,
 .tableRow th p,
@@ -19,17 +23,20 @@
   font-size: 18px !important;
   color: unset !important;
 }
+.MyCustomButton:hover {
+	background-color: blue;
+}
 
 .tableCel {
-  padding: 20px 4px !important;
+	padding: 20px 4px !important;
 }
 @media only screen and (max-width: 650px) {
-  .mobile-slider {
-    width: "100%"
-  }
+	.mobile-slider {
+		width: '100%';
+	}
 
-  .mobile-slider ul li div {
-    margin-left: auto;
-    margin-right: auto
-  }
+	.mobile-slider ul li div {
+		margin-left: auto;
+		margin-right: auto;
+	}
 }

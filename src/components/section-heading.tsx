@@ -5,7 +5,7 @@ interface SectionHeadingProps {
 	size?: number
 }
 
-export const SectionHeading = ({ title, size = 12 }: SectionHeadingProps) => {
+export const SectionHeading = ({ title, size = 16 }: SectionHeadingProps) => {
 	return (
 		<Stack
 			direction="row"
@@ -13,9 +13,9 @@ export const SectionHeading = ({ title, size = 12 }: SectionHeadingProps) => {
 			sx={{
 				background: 'url(src/assets/pngs/heading-background.png)',
 				backgroundRepeat: 'no-repeat',
-				backgroundPosition: 'center'
+				backgroundPosition: 'center', 
 			}}>
-			<Typography component="h3" fontSize={`${size}px`} color="white" textTransform="uppercase">
+			<Typography component="h3" fontSize={`${size}px`} fontWeight={700} color="white" textTransform="uppercase">
 				{title}
 			</Typography>
 		</Stack>
