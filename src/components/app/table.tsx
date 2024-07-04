@@ -683,7 +683,7 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 				<TableContainer>
 					<Table size="small" aria-label="table" sx={{ maxWidth: '100%', tableLayout: 'auto' }}>
 						<TableHead>
-							<TableRow>
+							<TableRow className='tableRow'>
 								<StyledTableHead
 									align="center"
 									sx={{
@@ -814,19 +814,18 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 										onClick={() => handleRowClick(match.id)}
 										className='tableRow'
 										sx={{
-
 											cursor: 'pointer',
 											'&:hover': {
 												background: 'linear-gradient(98.5deg, #05f0ff -46.16%, #7367ff 42.64%, #963cff 70.3%)',
 											}
 										}}>
-										<StyledTableCell className={'tableCel'} align="center">
+										<StyledTableCell className={'tableCel'}  align="center">
 											{formatTimeToLocal(match.date_unix)}
 										</StyledTableCell>
 										<StyledTableCell align="left">
 											<Stack
 												gap={[0.5, 2]}
-												alignItems={['center ', 'start']}
+												alignItems={['center ']}
 												direction="row"
 												justifyContent="center">
 												<Stack display={['flex', 'none']} direction="column" gap={0.5}>
@@ -894,14 +893,14 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 												<Box
 													component="img"
 													display={['none', 'block']}
-													sx={{ width: '18px', height: '18px' }}
+													sx={{ width: '30px', height: '30px' }}
 													src={`https://cdn.footystats.org/img/${match.home_image}`}
 													alt={match.home_name}
 												/>
 												<Typography
 													fontSize="12px"
 													px={1}
-													width="42px"
+													width="52px"
 													textAlign="center"
 													display={['none', 'block']}
 													py={0.25}
@@ -916,7 +915,7 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 												</Typography>
 												<Box
 													display={['none', 'block']}
-													sx={{ width: '18px', height: '18px' }}
+													sx={{ width: '30px', height: '30px' }}
 													component="img"
 													src={`https://cdn.footystats.org/img/${match.away_image}`}
 													alt={match.away_name}
@@ -935,7 +934,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												fontSize="12px"
 												width={['50px', 'auto']}
-												bgcolor={getGoalColor(match.avg_potential)}>
+												// bgcolor={getGoalColor(match.avg_potential)}
+												>
 												{match.avg_potential}
 											</Typography>
 										</StyledTableCell>
@@ -943,7 +943,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												width={['50px', 'auto']}
 												fontSize="12px"
-												bgcolor={PERCENTAGE_COLOR[match.o15_potential]}>
+												// bgcolor={PERCENTAGE_COLOR[match.o15_potential]}
+												>
 												{match.o15_potential}%
 											</Typography>
 										</StyledTableCell>
@@ -951,7 +952,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												width={['50px', 'auto']}
 												fontSize="12px"
-												bgcolor={PERCENTAGE_COLOR[match.o25_potential]}>
+												// bgcolor={PERCENTAGE_COLOR[match.o25_potential]}
+												>
 												{match.o25_potential}%
 											</Typography>
 										</StyledTableCell>
@@ -959,7 +961,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												width={['50px', 'auto']}
 												fontSize="12px"
-												bgcolor={PERCENTAGE_COLOR[match.btts_potential]}>
+												// bgcolor={PERCENTAGE_COLOR[match.btts_potential]}
+												>
 												{match.btts_potential}%
 											</Typography>
 										</StyledTableCell>
@@ -967,7 +970,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												width={['50px', 'auto']}
 												fontSize="12px"
-												bgcolor={getCornersAverageColor(match.corners_potential)}>
+												// bgcolor={getCornersAverageColor(match.corners_potential)}
+												>
 												{match.corners_potential}
 											</Typography>
 										</StyledTableCell>
@@ -975,7 +979,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												width={['50px', 'auto']}
 												fontSize="12px"
-												bgcolor={PERCENTAGE_COLOR[match.corners_o85_potential]}>
+												// bgcolor={PERCENTAGE_COLOR[match.corners_o85_potential]}
+												>
 												{match.corners_o85_potential}%
 											</Typography>
 										</StyledTableCell>
@@ -983,7 +988,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												width={['50px', 'auto']}
 												fontSize="12px"
-												bgcolor={PERCENTAGE_COLOR[match.corners_o95_potential]}>
+												// bgcolor={PERCENTAGE_COLOR[match.corners_o95_potential]}
+												>
 												{match.corners_o95_potential}%
 											</Typography>
 										</StyledTableCell>
@@ -991,7 +997,8 @@ export const MatchesTable = ({ matches, leagues }: any) => {
 											<Typography
 												width={['50px', 'auto']}
 												fontSize="12px"
-												bgcolor={getYellowCardsAverageColor(match.cards_potential)}>
+												// bgcolor={getYellowCardsAverageColor(match.cards_potential)}
+												>
 												{match.cards_potential}
 											</Typography>
 										</StyledTableCell>

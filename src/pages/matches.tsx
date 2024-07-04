@@ -138,7 +138,6 @@ export const Match = () => {
 					<Skeleton variant="rectangular" width="50%" height={20} />
 					<br />
 					<Skeleton variant="rectangular" width="100%" height={70} />
-
 				</Stack>
 			) : (
 				<Fixtures matches={matches} leagues={leagues} />
