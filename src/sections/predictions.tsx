@@ -26,7 +26,7 @@ export const PredictionsSection = ({ data, referee }: any) => {
 				fontSize="30px">
 				Predictii
 			</Typography>
-			<Stack mt={-2} direction="column" gap={3}>
+			<Stack direction="column" gap={3}>
 				<Stack
 					display={{ xs: 'flex', md: 'none' }}
 					gap={{ xs: 1, md: 2 }}

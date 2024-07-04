@@ -1,5 +1,5 @@
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat'
-import { Box, Grid, Stack, Typography, useTheme } from '@mui/material'
+import { Box, CircularProgress, Grid, Stack, Typography, useTheme } from '@mui/material'
 import AppLayout from 'components/app/layout'
 import TrendsDisplay from 'components/cards/trend-card'
 import { WDL_COLOR_SCHEME, getPPGColor } from 'constants/colors'
@@ -249,36 +249,48 @@ export const MatchDetails = () => {
 
 	return (
 		<AppLayout>
-			<Grid mt={4} justifyContent="center" columnSpacing={15} container>
+			<Grid mt={8} justifyContent="center" columnSpacing={15} container>
 				<Grid display={['none', 'flex']} item xs="auto" justifyContent="flex-end">
 					<Stack direction="column" alignItems="center">
-						<Typography fontSize="12px" fontWeight={700}>
+						<Typography fontSize="12px" fontWeight={800} mb={1}>
 							Pozitie: {getTeamPosition(matchDetails?.homeID) || 'N/A'}
 						</Typography>
 						<Stack
 							justifyContent="center"
 							alignItems="center"
-							borderRadius="12px"
-							p={1}
+							borderRadius="8px"
 							width="fit-content"
 							sx={{
-								boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'
+								boxShadow:
+									'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
+								padding: '12px'
 							}}>
-							<Box
-								component="img"
-								src={`https://cdn.footystats.org/img/${matchDetails?.home_image}`}
-								height="100px"
-							/>
+							{matchDetails?.home_image ? (
+								<Box
+									component="img"
+									src={`https://cdn.footystats.org/img/${matchDetails?.home_image}`}
+									height="100px"
+									sx={{
+										transition: 'transform 0.3s ease-in-out',
+										'&:hover': {
+											transform: 'scale(1.04) translateY(-3px)'
+										}
+									}}
+								/>
+							) : (
+								<CircularProgress sx={{ margin: '20px' }} />
+							)}
 						</Stack>
-						<Stack direction="row" mt={1} alignItems="center" mx={2} gap={0.5}>
-							<Typography fontSize="12px" color={theme.text}>
+						<Stack direction="row" mt={1.5} alignItems="center" mx={2} gap={0.5}>
+							<Typography fontSize="12px" fontWeight={600} color={theme.text}>
 								Medie Puncte
 							</Typography>
 							<Typography
-								fontSize="14px"
+								fontSize="13px"
 								color="white"
 								fontWeight={700}
-								p={0.25}
+								sx={{ padding: '1px 5px' }}
+								borderRadius={1}
 								bgcolor={getPPGColor(getSeasonPPG(true)?.toFixed(2))}>
 								{getSeasonPPG(true)?.toFixed(2) || 'N/A'}
 							</Typography>
@@ -293,10 +305,11 @@ export const MatchDetails = () => {
 				<Grid item xs="auto">
 					<Stack direction="column" alignItems="center">
 						<Typography fontSize={['18px', '20px']}>
-							{matchDetails?.home_name} vs {matchDetails?.away_name}
+							{matchDetails?.home_name} <span style={{ color: 'red', fontWeight: 700 }}> vs </span>{' '}
+							{matchDetails?.away_name}
 						</Typography>
 						{matchDetails?.date_unix && (
-							<Typography fontWeight={700}>
+							<Typography fontWeight={700} fontSize={'15px'}>
 								{DateTime.fromMillis(matchDetails?.date_unix * 1000)
 									.setLocale('ro')
 									.toFormat('dd LLL yyyy')}
@@ -306,7 +319,7 @@ export const MatchDetails = () => {
 							<Typography whiteSpace="nowrap" mt={0.5} fontSize="16px">
 								{matchDetails?.stadium_name}
 							</Typography>
-							<Typography mt={0.5} fontSize="16px">
+							<Typography mt={0.5} fontSize="16px" fontWeight={500} color={'#003366'}>
 								{matchDetails?.weather
 									? `${matchDetails?.weather?.temperature_celcius?.temp}°C`
 									: ''}
@@ -318,10 +331,10 @@ export const MatchDetails = () => {
 							</Typography>
 						) : (
 							<Stack
-								border="1px solid #b7b6b6"
-								my={0.5}
+								border="0.8px solid #b7b6b6"
+								my={'8px'}
 								px={2}
-								py={0.5}
+								py={'8px'}
 								direction="column"
 								justifyContent="center"
 								gap={0}>
@@ -331,6 +344,7 @@ export const MatchDetails = () => {
 								<Stack
 									direction="row"
 									bgcolor="#990000"
+									borderRadius={'5px'}
 									justifyContent="center"
 									color="white"
 									mx="auto"
@@ -338,7 +352,7 @@ export const MatchDetails = () => {
 									width="fit-content"
 									fontWeight={700}
 									fontSize="20px"
-									px={2}>
+									px={'12px'}>
 									<Typography
 										lineHeight={1.2}
 										fontWeight={700}
@@ -366,39 +380,54 @@ export const MatchDetails = () => {
 						</Typography>
 						<Stack direction="row" gap={0.5}>
 							<Typography>Etapa: </Typography>
-							<Typography fontWeight={600}>{matchDetails?.game_week}</Typography>
+							<Typography fontWeight={600} color={'#990000'}>
+								{matchDetails?.game_week}
+							</Typography>
 						</Stack>
 					</Stack>
 				</Grid>
 				<Grid display={['none', 'flex']} item xs="auto" alignItems="end">
 					<Stack direction="column" alignItems="center">
-						<Typography fontSize="12px" fontWeight={700}>
+						<Typography fontSize="12px" fontWeight={800} mb={1}>
 							Pozitie: {getTeamPosition(matchDetails?.awayID) || 'N/A'}
 						</Typography>
 						<Stack
 							justifyContent="center"
 							alignItems="center"
-							borderRadius="12px"
+							borderRadius="8px"
 							p={1}
 							width="fit-content"
 							sx={{
-								boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)'
+								boxShadow:
+									'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
+								padding: '12px'
 							}}>
-							<Box
-								component="img"
-								src={`https://cdn.footystats.org/img/${matchDetails?.away_image}`}
-								height="100px"
-							/>
+							{matchDetails?.away_image ? (
+								<Box
+									component="img"
+									src={`https://cdn.footystats.org/img/${matchDetails?.away_image}`}
+									height="100px"
+									sx={{
+										transition: 'transform 0.3s ease-in-out',
+										'&:hover': {
+											transform: 'scale(1.04) translateY(-3px)'
+										}
+									}}
+								/>
+							) : (
+								<CircularProgress sx={{ margin: '20px' }} />
+							)}
 						</Stack>
 						<Stack direction="row" mt={1} alignItems="center" mx={2} gap={0.5}>
-							<Typography fontSize="12px" color={theme.text}>
+							<Typography fontSize="12px" fontWeight={600} color={theme.text}>
 								Medie Puncte
 							</Typography>
 							<Typography
-								fontSize="14px"
+								fontSize="13px"
 								color="white"
 								fontWeight={700}
-								p={0.25}
+								sx={{ padding: '1px 5px' }}
+								borderRadius={1}
 								bgcolor={getPPGColor(getSeasonPPG(false)?.toFixed(2))}>
 								{getSeasonPPG(false)?.toFixed(2)}
 							</Typography>
