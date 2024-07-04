@@ -2,27 +2,32 @@ html,
 body {
 	scroll-behavior: smooth;
 }
+
 * {
 	box-sizing: border-box;
 	margin: 0px;
 	padding: 0px;
 	font-family: 'Barlow', sans-serif;
 }
+
 .tableRow td,
 .tableRow th p,
-.tableRow td p{
-  font-size: 18px !important;
-  color: black !important;
+.tableRow td p {
+	font-size: 18px !important;
+	color: black !important;
 }
+
 .tableRow:hover {
-  color: white !important;
+	color: white !important;
 }
+
 .tableRow td,
 .tableRow th p,
-.tableRow td p{
-  font-size: 18px !important;
-  color: unset !important;
+.tableRow td p {
+	font-size: 18px !important;
+	color: unset !important;
 }
+
 .MyCustomButton:hover {
 	background-color: blue;
 }
@@ -30,6 +35,75 @@ body {
 .tableCel {
 	padding: 20px 4px !important;
 }
+
+.team-grid {
+	justify-content: center !important;
+	background: #dae4da;
+	width: fit-content !important;
+	margin: 10px auto !important;
+	padding: 24px 40px;
+	border-radius: 16px;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;}
+
+.team-section {
+	margin: 0 30px;
+}
+
+
+.loading {
+	margin-top: 100px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 50px;
+	display: flex;
+	align-items: center;
+  }
+  
+  .obj {
+	width: 6px;
+	height: 0px;
+	background: #17a2b8;
+	margin: 0 3px;
+	border-radius: 10px;
+	animation: loading 1.2s infinite;
+  }
+  
+  .obj:nth-child(2){
+	animation-delay: 0.15s;
+  }
+  .obj:nth-child(3){
+	animation-delay: 0.3s;
+  }
+  .obj:nth-child(4){
+	animation-delay: 0.45s;
+  }
+  .obj:nth-child(5){
+	animation-delay: 0.6s;
+  }
+  .obj:nth-child(6){
+	animation-delay: 0.75s;
+  }
+  .obj:nth-child(7){
+	animation-delay: 0.9s;
+  }
+  .obj:nth-child(8){
+	animation-delay: 1.05s;
+  }
+  
+  @keyframes loading {
+	0% {
+	  height: 0;
+	}
+	50% {
+	  height: 50px;
+	}
+	100% {
+	  height: 0;
+	}
+  }
+
 @media only screen and (max-width: 650px) {
 	.mobile-slider {
 		width: '100%';
