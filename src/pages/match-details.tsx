@@ -15,6 +15,7 @@ import leaguesService from 'services/league-service'
 import matchesService from 'services/match-service'
 import refereesService from 'services/referee-service'
 import teamsService from 'services/team-service'
+import Skeleton from '@mui/material/Skeleton';
 
 export const MatchDetails = () => {
 	const { id } = useParams()
@@ -249,23 +250,25 @@ export const MatchDetails = () => {
 
 	return (
 		<AppLayout>
-			<Grid mt={8} justifyContent="center" columnSpacing={15} container>
-				<Grid display={['none', 'flex']} item xs="auto" justifyContent="flex-end">
+			<Grid mt={8} justifyContent="center" columnSpacing={15} className='team-grid' container>
+				<Grid display={['none', 'flex']} xs="auto" className='team-section' justifyContent="flex-end">
 					<Stack direction="column" alignItems="center">
 						<Typography fontSize="12px" fontWeight={800} mb={1}>
 							Pozitie: {getTeamPosition(matchDetails?.homeID) || 'N/A'}
 						</Typography>
-						<Stack
-							justifyContent="center"
-							alignItems="center"
-							borderRadius="8px"
-							width="fit-content"
-							sx={{
-								boxShadow:
-									'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
-								padding: '12px'
-							}}>
-							{matchDetails?.home_image ? (
+						{matchDetails?.home_image ? (
+							<Stack
+								justifyContent="center"
+								alignItems="center"
+								borderRadius="8px"
+								minHeight={90}
+								minWidth={90}
+								width="fit-content"
+								sx={{
+									boxShadow:
+										'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
+									padding: '12px'
+								}}>
 								<Box
 									component="img"
 									src={`https://cdn.footystats.org/img/${matchDetails?.home_image}`}
@@ -277,10 +280,11 @@ export const MatchDetails = () => {
 										}
 									}}
 								/>
-							) : (
-								<CircularProgress sx={{ margin: '20px' }} />
-							)}
-						</Stack>
+
+							</Stack>
+						) : (
+							<Skeleton variant="rectangular" width={100} height={100} />
+						)}
 						<Stack direction="row" mt={1.5} alignItems="center" mx={2} gap={0.5}>
 							<Typography fontSize="12px" fontWeight={600} color={theme.text}>
 								Medie Puncte
@@ -302,107 +306,129 @@ export const MatchDetails = () => {
 						<TrendingFlatIcon sx={{ transform: 'scale(7, 1.5)', color: theme.text }} />
 					</Stack>
 				</Grid>
-				<Grid item xs="auto">
-					<Stack direction="column" alignItems="center">
-						<Typography fontSize={['18px', '20px']}>
-							{matchDetails?.home_name} <span style={{ color: 'red', fontWeight: 700 }}> vs </span>{' '}
-							{matchDetails?.away_name}
-						</Typography>
-						{matchDetails?.date_unix && (
-							<Typography fontWeight={700} fontSize={'15px'}>
-								{DateTime.fromMillis(matchDetails?.date_unix * 1000)
-									.setLocale('ro')
-									.toFormat('dd LLL yyyy')}
+				<Grid xs="auto" className='team-section'>
+					{matchDetails ? (
+						<Stack direction="column" alignItems="center">
+							<Typography fontSize={['18px', '20px']}>
+								{matchDetails?.home_name} <span style={{ color: 'red', fontWeight: 700 }}> vs </span>{' '}
+								{matchDetails?.away_name}
 							</Typography>
-						)}
-						<Stack direction="row" gap={1}>
-							<Typography whiteSpace="nowrap" mt={0.5} fontSize="16px">
-								{matchDetails?.stadium_name}
-							</Typography>
-							<Typography mt={0.5} fontSize="16px" fontWeight={500} color={'#003366'}>
-								{matchDetails?.weather
-									? `${matchDetails?.weather?.temperature_celcius?.temp}°C`
-									: ''}
-							</Typography>
-						</Stack>
-						{matchDetails?.status !== 'complete' ? (
-							<Typography color={theme.text} my={0.5} fontWeight={1000} fontSize="42px">
-								{formatTimeToLocal(matchDetails?.date_unix)}
-							</Typography>
-						) : (
-							<Stack
-								border="0.8px solid #b7b6b6"
-								my={'8px'}
-								px={2}
-								py={'8px'}
-								direction="column"
-								justifyContent="center"
-								gap={0}>
-								<Typography fontSize="18px" component="h3">
-									REZULTAT FINAL
+							{matchDetails?.date_unix && (
+								<Typography fontWeight={700} fontSize={'15px'}>
+									{DateTime.fromMillis(matchDetails?.date_unix * 1000)
+										.setLocale('ro')
+										.toFormat('dd LLL yyyy')}
 								</Typography>
-								<Stack
-									direction="row"
-									bgcolor="#990000"
-									borderRadius={'5px'}
-									justifyContent="center"
-									color="white"
-									mx="auto"
-									alignItems="center"
-									width="fit-content"
-									fontWeight={700}
-									fontSize="20px"
-									px={'12px'}>
-									<Typography
-										lineHeight={1.2}
-										fontWeight={700}
-										color="white"
-										fontSize="24px"
-										textAlign="center">
-										{matchDetails?.homeGoalCount}-
-									</Typography>
-									<Typography
-										lineHeight={1.2}
-										fontWeight={700}
-										color="white"
-										fontSize="24px"
-										textAlign="center">
-										{matchDetails?.awayGoalCount}
-									</Typography>
-								</Stack>
+							)}
+							<Stack direction="row" gap={1}>
+								<Typography whiteSpace="nowrap" mt={0.5} fontSize="16px">
+									{matchDetails?.stadium_name}
+								</Typography>
+								<Typography mt={0.5} fontSize="16px" fontWeight={500} color={'#003366'}>
+									{matchDetails?.weather
+										? `${matchDetails?.weather?.temperature_celcius?.temp}°C`
+										: ''}
+								</Typography>
 							</Stack>
-						)}
-						<Typography mt={0.5} fontSize="16px">
-							Arbitru
-						</Typography>
-						<Typography mt={-0.75} fontSize="16px" fontWeight={700}>
-							{referee?.full_name}
-						</Typography>
-						<Stack direction="row" gap={0.5}>
-							<Typography>Etapa: </Typography>
-							<Typography fontWeight={600} color={'#990000'}>
-								{matchDetails?.game_week}
+							{matchDetails?.status !== 'complete' ? (
+								<Typography color={theme.text} my={0.5} fontWeight={1000} fontSize="42px">
+									{formatTimeToLocal(matchDetails?.date_unix)}
+								</Typography>
+							) : (
+								<Stack
+									border="0.8px solid #b7b6b6"
+									my={'8px'}
+									px={2}
+									py={'8px'}
+									direction="column"
+									justifyContent="center"
+									gap={0}>
+									<Typography fontSize="18px" component="h3">
+										REZULTAT FINAL
+									</Typography>
+									<Stack
+										direction="row"
+										bgcolor="#990000"
+										borderRadius={'5px'}
+										justifyContent="center"
+										color="white"
+										mx="auto"
+										alignItems="center"
+										width="fit-content"
+										fontWeight={700}
+										fontSize="20px"
+										px={'12px'}>
+										<Typography
+											lineHeight={1.2}
+											fontWeight={700}
+											color="white"
+											fontSize="24px"
+											textAlign="center">
+											{matchDetails?.homeGoalCount}-
+										</Typography>
+										<Typography
+											lineHeight={1.2}
+											fontWeight={700}
+											color="white"
+											fontSize="24px"
+											textAlign="center">
+											{matchDetails?.awayGoalCount}
+										</Typography>
+									</Stack>
+								</Stack>
+							)}
+							<Typography mt={0.5} fontSize="16px">
+								Arbitru
 							</Typography>
+							<Typography mt={-0.75} fontSize="16px" fontWeight={700}>
+								{referee?.full_name}
+							</Typography>
+							<Stack direction="row" gap={0.5}>
+								<Typography>Etapa: </Typography>
+								<Typography fontWeight={600} color={'#990000'}>
+									{matchDetails?.game_week}
+								</Typography>
+							</Stack>
 						</Stack>
-					</Stack>
+					) : (
+
+						<Stack >
+							<Skeleton variant="rectangular" width={200} height={10} />
+							<Stack marginTop={1} marginBottom={1} direction='row' justifyContent="space-between">
+								<Skeleton variant="rectangular" width={90} height={10} />
+								<Skeleton variant="rectangular" width={90} height={10} />
+							</Stack>
+							<Skeleton variant="rectangular" width={200} height={100} />
+							<Stack marginTop={1} marginBottom={1} direction='row' justifyContent="space-between">
+								<Skeleton variant="rectangular" width={90} height={10} />
+								<Skeleton variant="rectangular" width={90} height={10} />
+							</Stack>
+							<Skeleton variant="rectangular" width={200} height={10} />
+
+						</Stack>
+					)}
+
 				</Grid>
-				<Grid display={['none', 'flex']} item xs="auto" alignItems="end">
+				<Grid display={['none', 'flex']} xs="auto" className='team-section' alignItems="end">
 					<Stack direction="column" alignItems="center">
 						<Typography fontSize="12px" fontWeight={800} mb={1}>
 							Pozitie: {getTeamPosition(matchDetails?.awayID) || 'N/A'}
 						</Typography>
-						<Stack
-							justifyContent="center"
-							alignItems="center"
-							borderRadius="8px"
-							p={1}
-							width="fit-content"
-							sx={{
-								boxShadow:
-									'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
-								padding: '12px'
-							}}>
-							{matchDetails?.away_image ? (
+						{matchDetails?.away_image ? (
+							<Stack
+								justifyContent="center"
+								alignItems="center"
+								borderRadius="8px"
+								p={1}
+								minHeight={90}
+								minWidth={90}
+								width="fit-content"
+								sx={{
+									boxShadow:
+										'rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px',
+									padding: '12px'
+								}}>
+
 								<Box
 									component="img"
 									src={`https://cdn.footystats.org/img/${matchDetails?.away_image}`}
@@ -414,10 +440,12 @@ export const MatchDetails = () => {
 										}
 									}}
 								/>
-							) : (
-								<CircularProgress sx={{ margin: '20px' }} />
-							)}
-						</Stack>
+
+							</Stack>
+
+						) : (
+							<Skeleton variant="rectangular" width={100} height={100} />
+						)}
 						<Stack direction="row" mt={1} alignItems="center" mx={2} gap={0.5}>
 							<Typography fontSize="12px" fontWeight={600} color={theme.text}>
 								Medie Puncte
@@ -547,7 +575,16 @@ export const MatchDetails = () => {
 						<RankingsSection data={matchDetails} leagueTeams={leagueTeams} />
 					</>
 				) : (
-					<p>Loading match details...</p>
+					<div className="loading">
+						<div className="obj"></div>
+						<div className="obj"></div>
+						<div className="obj"></div>
+						<div className="obj"></div>
+						<div className="obj"></div>
+						<div className="obj"></div>
+						<div className="obj"></div>
+						<div className="obj"></div>
+					</div>
 				)}
 			</Stack>
 		</AppLayout>
