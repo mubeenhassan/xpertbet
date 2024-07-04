@@ -25,10 +25,11 @@ export default function Hero() {
             <Container
                 sx={{
                     display: 'flex',
+                    
                     flexDirection: 'column',
                     alignItems: 'center',
-                    pt: { xs: 14, sm: 20 },
-                    pb: { xs: 8, sm: 12 },
+                    pt: { xs: 10, sm: 12 },
+                    pb: { xs: 4, sm: 8 },
                 }}
             >
                 <Stack spacing={2} useFlexGap sx={{ width: { xs: '100%', sm: '70%' } }}>

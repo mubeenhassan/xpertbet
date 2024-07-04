@@ -8,6 +8,21 @@ body {
 	padding: 0px;
 	font-family: 'Barlow', sans-serif;
 }
+.tableRow td,
+.tableRow th p,
+.tableRow td p{
+  font-size: 18px !important;
+  color: black !important;
+}
+.tableRow:hover {
+  color: white !important;
+}
+.tableRow td,
+.tableRow th p,
+.tableRow td p{
+  font-size: 18px !important;
+  color: unset !important;
+}
 .MyCustomButton:hover {
 	background-color: blue;
 }
